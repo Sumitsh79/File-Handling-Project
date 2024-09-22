@@ -1,0 +1,83 @@
+#### File handling projects
+
+import os
+
+print("File Handling Project")
+print("Press 1 for writing data to a file")
+print("Press 2 for reading data from a file")
+print("Press 3 for appending some data to existing file")
+print("Press 4 for delete the file")
+print("Press 5 for renaming the file")
+
+choice = int(input())
+
+def writedata(filename,content):
+    with open(filename,"w") as f:
+        f.write(content)
+    print("Data written successfully")
+
+def readdata(filename):
+    print("Content of file is ")
+    with open(filename,"r") as f:
+        print(f.read())
+
+def appenddata(filedata,data):
+    with open(filename,"a") as f:
+        f.write(data)
+    print("Data written successfully")
+
+def renamefile(filename,newfilename):
+    os.rename(filename,newfilename)
+    print("File renamed successfully")
+    
+
+def deletefile(filename):
+    os.remove(filename)
+    print("File",filename,"deleted is successfully")
+
+
+filename = "studentdata.txt"
+newfilename = "student1.txt"
+
+
+if choice==1:
+    print("Enter the content you want to add")
+    content = input()
+    writedata(filename,content)
+elif choice==2:
+    readdata(filename)
+elif choice==3:
+    print("Enter data to be appended")
+    data = input()
+    appenddata(filename,data)
+elif choice==4:
+    deletefile(newfilename)
+elif choice==5:
+    renamefile(filename,newfilename)
+    
+
+
+## file1.txt(read from file)
+## file2.txt(write to file)
+## Copying data from file1 to file2
+
+
+with open("file1.txt","r") as f:
+    data = f.read()
+
+with open("file2.txt","w") as f:
+    f.write(data)
+print("Data copied")
+
+with open("file2.txt","r") as f:
+    print(f.read())
+    
+
+#### Error handling
+
+def writedata(filename,content):
+    try:
+        with open(filename,"w") as f:
+            f.write(content)
+    except IOError:
+        print("unable to write data")
